@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de senhas</title>
+</head>
+
+<body>
+    <main>
+        <h1>Gerador de senhas simplificado</h1>
+        <p>O intuito deste sistema é permitir, de maneira direta e simplificada, a criação de senhas seguras e
+            permitindo a cópia da senha para um local seguro.</p>
+        <p>Importante: Este sistema não armazena a senha após gerada.</p>
+<h3>Configurações da senha</h3>
+<label for="length">Tamanho da senha
+<input type="number" min=""4" max="30" name="length" id="length" required />
+</label> <br>
+<label for="uppercase">Incluir maiúsculas
+<input type="checkbox" name="uppercase" id="uppercase" checked>
+</label><br>
+<label for="lowercase">Incluir minúsculas
+<input type="checkbox" name="lowercase" id="lowercase" checked />
+</label><br>
+<label for="numbers">Incluir números
+<input type="checkbox" name="numbers" id="numbers" checked />
+</label><br>
+<label for="symbols">Incluir símbolos
+<input type="checkbox" name="symbols" id="symbols" checked />
+</label><br>
+<button id="gerarSenha">Gerar senha</button>
+
+<div id="exibir-senha">
+    <h3>Senha gerada com sucesso</h3>
+    <p>Copie a senha abaixo</p><br>
+    <label for="senhagerada">Senha gerada
+    <input type="text" name="senhagerada" id="senhagerada" readonly />
+</label><br></brr>
+</div>
+
+<script>
+    const botaoGerarSenha = document.getElementById('gerarSenha');
+    const senhaGerada = document.getElementById('senhagerada');
+
+    botaoGerarSenha.addEventListener('click',() => {
+const tamanho = document.getElementById('length').value;
+const incluirMaiusculas = document.getElementById('uppercase').checked;
+const incluirMinusculas =  document.getElementById('lowercase').checked;
+const incluirNumeros = document.getElementById('numbers').checked;
+const incluirSimbolos = document.getElementById('symbols').checked;
+
+const maiusculas = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const minusculas = 'abcdefghijklmnopqrstuvwxyz';
+const numeros = '1234567890';
+const simbolos = '!@#$%^&*()_-+=';
+
+let caracteresPossiveis = '';
+if (incluirMaiusculas) caracteresPossiveis += maiusculas;
+    if (incluirMinusculas) caracteresPossiveis += minusculas;
+    if (incluirNumeros) caracteresPossiveis += numeros;
+    if (incluirSimbolos) caracteresPossiveis += simbolos;
+
+    let senha = '';
+    for (let i = 0; i < tamanho; i++) {
+      const indiceAleatorio = Math.floor(Math.random() * caracteresPossiveis.length);
+      senha += caracteresPossiveis[indiceAleatorio];
+    }
+
+    senhaGerada.value = senha;
+    })
+</script>
+
+</main>
+</body>
+
+</html>
