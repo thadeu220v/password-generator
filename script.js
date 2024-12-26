@@ -1,5 +1,7 @@
 const botaoGerarSenha = document.getElementById('gerarSenha');
     const senhaGerada = document.getElementById('senhagerada');
+const exibirSenhaDiv = document.getElementById('exibir-senha');
+exibirSenhaDiv.style.display = 'none';
 
     botaoGerarSenha.addEventListener('click',() => {
 const tamanho = document.getElementById('length').value;
@@ -24,6 +26,16 @@ if (incluirMaiusculas) caracteresPossiveis += maiusculas;
       const indiceAleatorio = Math.floor(Math.random() * caracteresPossiveis.length);
       senha += caracteresPossiveis[indiceAleatorio];
     }
-
+exibirSenhaDiv.style.display = 'block';
     senhaGerada.value = senha;
     })
+
+
+    function copiarSenha() {
+      const senhaInput = document.getElementById('senhagerada');
+      senhaInput.select();
+      document.execCommand('copy'); 
+    }
+
+    const botaoCopiar = document.getElementById('copiarSenha');
+botaoCopiar.addEventListener('click', copiarSenha);
